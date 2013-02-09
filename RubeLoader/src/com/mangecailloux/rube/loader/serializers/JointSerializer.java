@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.Json.ReadOnlySerializer;
 import com.mangecailloux.rube.RubeDefaults;
+import com.mangecailloux.rube.RubeScene;
 
 public class JointSerializer extends ReadOnlySerializer<Joint>
 {
@@ -53,6 +54,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 		joints = _joints;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Joint read(Json json, Object jsonData, Class type) 
 	{
@@ -131,11 +133,13 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 				((MouseJoint) joint).setTarget(mouseJointDefSerializer.target);
 			}
 		}
+		RubeScene.getScene().parseCustomProperties(json, joint, jsonData);
 		return joint;
 	}
 	
 	public class RevoluteJointDefSerializer extends ReadOnlySerializer<RevoluteJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public RevoluteJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -165,6 +169,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	
 	public class PrismaticJointDefSerializer extends ReadOnlySerializer<PrismaticJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public PrismaticJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -201,6 +206,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	
 	public class DistanceJointDefSerializer extends ReadOnlySerializer<DistanceJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public DistanceJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -226,6 +232,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	
 	public class PulleyJointDefSerializer extends ReadOnlySerializer<PulleyJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public PulleyJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -259,6 +266,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	{	
 		public Vector2 target;
 		
+		@SuppressWarnings("rawtypes")
 		@Override
 		public MouseJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -285,6 +293,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	
 	public class WeldJointDefSerializer extends ReadOnlySerializer<WeldJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public WeldJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -308,6 +317,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	
 	public class FrictionJointDefSerializer extends ReadOnlySerializer<FrictionJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public FrictionJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -332,6 +342,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	
 	public class WheelJointDefSerializer extends ReadOnlySerializer<WheelJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public WheelJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -362,6 +373,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	
 	public class RopeJointDefSerializer extends ReadOnlySerializer<RopeJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public RopeJointDef read(Json json, Object jsonData, Class type)
 		{	
@@ -385,6 +397,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	
 	public class GearJointDefSerializer extends ReadOnlySerializer<GearJointDef>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public GearJointDef read(Json json, Object jsonData, Class type)
 		{	

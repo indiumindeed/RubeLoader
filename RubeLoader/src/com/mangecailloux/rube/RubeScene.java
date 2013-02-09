@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
 
 /**
  * A simple encapsulation of a {@link World}. Plus the data needed to run the simulation.
@@ -20,14 +21,14 @@ public class RubeScene
    public class CustomProperties {
 
       Map<String, Integer> m_customPropertyMap_int;
-      Map<String, Double> m_customPropertyMap_float;
+      Map<String, Float> m_customPropertyMap_float;
       Map<String, String> m_customPropertyMap_string;
       Map<String, Vector2> m_customPropertyMap_Vector2;
       Map<String, Boolean> m_customPropertyMap_bool;
       
       public CustomProperties() {
          m_customPropertyMap_int = new HashMap<String, Integer>();
-         m_customPropertyMap_float = new HashMap<String, Double>();
+         m_customPropertyMap_float = new HashMap<String, Float>();
          m_customPropertyMap_string = new HashMap<String, String>();
          m_customPropertyMap_Vector2 = new HashMap<String, Vector2>();
          m_customPropertyMap_bool = new HashMap<String, Boolean>();
@@ -37,6 +38,7 @@ public class RubeScene
 	/** Box2D {@link World} */
 	public World world;
 	
+	public static RubeScene mScene; // singleton reference.  Initialized by RubeWorldSerializer.
 	private Array<Body> mBodies;
 	private Array<Fixture> mFixtures;
 	private Array<Joint> mJoints;
@@ -58,6 +60,49 @@ public class RubeScene
 		mCustomPropertiesMap = new HashMap<Object, CustomProperties>();
 	}
 	
+	public static RubeScene getScene()
+	{
+	   return mScene;
+	}
+	
+	public static void setScene(RubeScene scene)
+	{
+	   mScene = scene;
+	}
+	
+	public void parseCustomProperties(Json json,Object item, Object jsonData)
+	{
+	   Array<Map<String,?>> customProperties = json.readValue("customProperties", Array.class, HashMap.class, jsonData);
+      if (customProperties != null)
+      {
+         for (int i = 0; i < customProperties.size; i++)
+         {
+            Map<String, ?> property = customProperties.get(i);
+            String propertyName = (String)property.get("name");
+            if (property.containsKey("string"))
+            {
+               setCustom(item, propertyName, (String)property.get("string"));
+            }
+            else if (property.containsKey("int"))
+            {
+               setCustom(item, propertyName,(Integer)property.get("int"));
+            }
+            else if (property.containsKey("float"))
+            {
+               setCustom(item, propertyName, (Float) property.get("float"));
+            }
+            else if (property.containsKey("vec2"))
+            {
+               setCustom(item, propertyName, (Vector2)json.readValue("vec2", Vector2.class,property));
+            }
+            else if (property.containsKey("bool"))
+            {
+               setCustom(item, propertyName, (Boolean)property.get("bool"));
+            }
+         }
+      }
+	}
+	
    public CustomProperties getCustomPropertiesForItem(Object item, boolean createIfNotExisting)
    {
 
@@ -73,10 +118,31 @@ public class RubeScene
       return props;
    }
 
-   public void setCustom(Body item, String propertyName, String val)
+   public void setCustom(Object item, String propertyName, String val)
    {
       getCustomPropertiesForItem(item, true).m_customPropertyMap_string.put(propertyName, val);
    }
+   
+   public void setCustom(Object item, String propertyName, Integer val)
+   {
+      getCustomPropertiesForItem(item, true).m_customPropertyMap_int.put(propertyName, val);
+   }
+   
+   public void setCustom(Object item, String propertyName, Float val)
+   {
+      getCustomPropertiesForItem(item, true).m_customPropertyMap_float.put(propertyName, val);
+   }
+   
+   public void setCustom(Object item, String propertyName, Boolean val)
+   {
+      getCustomPropertiesForItem(item, true).m_customPropertyMap_bool.put(propertyName, val);
+   }
+   
+   public void setCustom(Object item, String propertyName, Vector2 val)
+   {
+      getCustomPropertiesForItem(item, true).m_customPropertyMap_Vector2.put(propertyName, val);
+   }
+   
    
    public String getCustom(Object item, String propertyName, String defaultVal)
    {
@@ -87,6 +153,46 @@ public class RubeScene
          return props.m_customPropertyMap_string.get(propertyName);
       return defaultVal;
 	}
+	
+   public int getCustom(Object item, String propertyName, int defaultVal)
+   {
+      CustomProperties props = getCustomPropertiesForItem(item, false);
+      if (null == props)
+         return defaultVal;
+      if (props.m_customPropertyMap_int.containsKey(propertyName))
+         return props.m_customPropertyMap_int.get(propertyName);
+      return defaultVal;
+   }
+   
+   public boolean getCustom(Object item, String propertyName, boolean defaultVal)
+   {
+      CustomProperties props = getCustomPropertiesForItem(item, false);
+      if (null == props)
+         return defaultVal;
+      if (props.m_customPropertyMap_bool.containsKey(propertyName))
+         return props.m_customPropertyMap_bool.get(propertyName);
+      return defaultVal;
+   }
+   
+   public float getCustom(Object item, String propertyName, float defaultVal)
+   {
+      CustomProperties props = getCustomPropertiesForItem(item, false);
+      if (null == props)
+         return defaultVal;
+      if (props.m_customPropertyMap_float.containsKey(propertyName))
+         return props.m_customPropertyMap_float.get(propertyName);
+      return defaultVal;
+   }
+   
+   public Vector2 getCustom(Object item, String propertyName, Vector2 defaultVal)
+   {
+      CustomProperties props = getCustomPropertiesForItem(item, false);
+      if (null == props)
+         return defaultVal;
+      if (props.m_customPropertyMap_Vector2.containsKey(propertyName))
+         return props.m_customPropertyMap_Vector2.get(propertyName);
+      return defaultVal;
+   }
 	
 	/**
 	 * Convenience method to update the Box2D simulation with the parameters read from the scene.

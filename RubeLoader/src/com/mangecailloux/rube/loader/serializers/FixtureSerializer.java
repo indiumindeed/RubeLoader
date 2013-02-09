@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.Json.ReadOnlySerializer;
+import com.mangecailloux.rube.RubeScene;
 import com.mangecailloux.rube.loader.serializers.utils.RubeVertexArray;
 
 public class FixtureSerializer extends ReadOnlySerializer<Fixture>
@@ -32,6 +33,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 		body = _body;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Fixture read(Json json, Object jsonData, Class type) 
 	{
@@ -96,11 +98,13 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 		
 		Fixture fixture = body.createFixture(def);
 		def.shape.dispose();
+		RubeScene.getScene().parseCustomProperties(json, fixture, jsonData);
 		return fixture;
 	}
 	
 	public static class CircleShapeSerializer extends ReadOnlySerializer<CircleShape>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public CircleShape read(Json json, Object jsonData, Class type)
 		{			
@@ -122,6 +126,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 	
 	public static class PolygonShapeSerializer extends ReadOnlySerializer<PolygonShape>
 	{	
+		@SuppressWarnings("rawtypes")
 		@Override
 		public PolygonShape read(Json json, Object jsonData, Class type)
 		{
@@ -140,6 +145,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 	
 	public static class EdgeShapeSerializer extends ReadOnlySerializer<EdgeShape>
 	{		
+		@SuppressWarnings("rawtypes")
 		@Override
 		public EdgeShape read(Json json, Object jsonData, Class type)
 		{
@@ -180,6 +186,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 			readloop = _readloop;
 		}
 		
+		@SuppressWarnings("rawtypes")
 		@Override
 		public ChainShape read(Json json, Object jsonData, Class type)
 		{
