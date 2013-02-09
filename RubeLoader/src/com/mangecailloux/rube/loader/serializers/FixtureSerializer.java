@@ -43,6 +43,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 		json.setIgnoreUnknownFields(true);
 		
 		FixtureDef def = new FixtureDef();
+		def.friction = 0; // NOTE: fixtures with 0 friction do not have a friction member in the RUBE Json file.  Do not use the libgdx default of 0.2f!
 		json.readFields(def, jsonData);
 		def.isSensor = json.readValue("sensor", boolean.class, false, jsonData);
 		
