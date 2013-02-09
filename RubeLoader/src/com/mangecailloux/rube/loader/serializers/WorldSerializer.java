@@ -8,11 +8,14 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.Json.ReadOnlySerializer;
 import com.mangecailloux.rube.RubeDefaults;
+import com.mangecailloux.rube.RubeScene;
 
 public class WorldSerializer extends ReadOnlySerializer<World>
 {
 	private final BodySerializer 	bodySerializer;
 	private final JointSerializer 	jointSerializer;
+	
+	private RubeScene mScene;
 	
 	public WorldSerializer(Json _json)
 	{
@@ -21,6 +24,11 @@ public class WorldSerializer extends ReadOnlySerializer<World>
 		
 		jointSerializer = new JointSerializer(_json);
 		_json.setSerializer(Joint.class, jointSerializer);
+	}
+	
+	public void setScene(RubeScene scene)
+	{
+	   mScene = scene;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -41,7 +49,9 @@ public class WorldSerializer extends ReadOnlySerializer<World>
 		
 		// Bodies
 		bodySerializer.setWorld(world);
+		bodySerializer.setScene(mScene);
 		Array<Body> bodies = json.readValue("body", Array.class, Body.class, jsonData);
+		mScene.setBodies(bodies);
 		
 		// Joints
 		// joints are done in two passes because gear joints reference other joints
@@ -51,6 +61,7 @@ public class WorldSerializer extends ReadOnlySerializer<World>
 		// Second joint pass
 		jointSerializer.init(world, bodies, joints);
 		joints = json.readValue("joint", Array.class, Joint.class, jsonData);
+		mScene.setJoints(joints);
 		
 		return world;
 	}

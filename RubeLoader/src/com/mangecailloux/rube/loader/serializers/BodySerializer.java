@@ -1,5 +1,8 @@
 package com.mangecailloux.rube.loader.serializers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -11,10 +14,12 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.Json.ReadOnlySerializer;
 import com.mangecailloux.rube.RubeDefaults;
+import com.mangecailloux.rube.RubeScene;
 
 public class BodySerializer extends ReadOnlySerializer<Body>
 {
 	private 	  World world;
+	private RubeScene mScene;
 	private final BodyDef def = new BodyDef();
 	private final FixtureSerializer fixtureSerializer;
 
@@ -32,6 +37,11 @@ public class BodySerializer extends ReadOnlySerializer<Body>
 	{
 		world = _world;
 	}
+	
+   public void setScene(RubeScene scene)
+   {
+      mScene = scene;
+   }
 	
 	@Override
 	public Body read(Json json, Object jsonData, Class type) 
@@ -83,6 +93,37 @@ public class BodySerializer extends ReadOnlySerializer<Body>
 				if(massData.mass != 0.0f || massData.I != 0.0f || massData.center.x != 0.0f || massData.center.y != 0.0f)
 					body.setMassData(massData);
 			}
+		}
+		
+		Array<Map<String,?>> customProperties = json.readValue("customProperties", Array.class, HashMap.class, jsonData);
+		if (customProperties != null)
+		{
+		   for (int i = 0; i < customProperties.size; i++)
+		   {
+		      Map<String, ?> property = customProperties.get(i);
+		      String propertyName = (String)property.get("name");
+            if (property.containsKey("string"))
+            {
+               mScene.setCustom(body, propertyName, (String)property.get("string"));
+            }
+//		      else if (property.containsKey("int"))
+//		      {
+//		         setCustom(body, propertyName,(int)property.get("int"));
+//		      }
+//		      else if (property.containsKey("float"))
+//		      {
+//		         setCustom(body, propertyName, (float) property.get("float"));
+//		      }
+
+//		      else if (property.containsKey("Vec2"))
+//		      {
+//		         setCustom(body, propertyName, this.jsonToVec("Vec2", propValue));
+//		      }
+//		      else if (property.containsKey("bool"))
+//		      {
+//		         setCustom(body, propertyName, property.get("bool"));
+//		      }
+		   }
 		}
 		
 		fixtureSerializer.setBody(body);

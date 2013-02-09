@@ -42,6 +42,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 		
 		FixtureDef def = new FixtureDef();
 		json.readFields(def, jsonData);
+		def.isSensor = json.readValue("sensor", boolean.class, false, jsonData);
 		
 		CircleShape circle = json.readValue("circle", CircleShape.class, jsonData);
 		
@@ -94,6 +95,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 		}
 		
 		Fixture fixture = body.createFixture(def);
+		def.shape.dispose();
 		return fixture;
 	}
 	
