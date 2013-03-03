@@ -17,9 +17,11 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 {
 	private Body body;
 	private final ChainShapeSerializer 	 chainShapeSerializer;
+	private RubeScene scene;
 	
-	public FixtureSerializer(Json json)
+	public FixtureSerializer(RubeScene scene, Json json)
 	{		
+		this.scene = scene;
 		chainShapeSerializer	= new ChainShapeSerializer();
 		
 		json.setSerializer(PolygonShape.class, new PolygonShapeSerializer());
@@ -99,7 +101,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 		
 		Fixture fixture = body.createFixture(def);
 		def.shape.dispose();
-		RubeScene.getScene().parseCustomProperties(json, fixture, jsonData);
+		scene.parseCustomProperties(json, fixture, jsonData);
 		return fixture;
 	}
 	

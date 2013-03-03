@@ -8,11 +8,13 @@ import com.mangecailloux.rube.RubeScene;
 
 public class RubeWorldSerializer extends ReadOnlySerializer<RubeScene>
 {
-   private WorldSerializer mWorldSerializer;
+	private WorldSerializer mWorldSerializer;
+	private RubeScene scene;
    
 	public RubeWorldSerializer(Json json)
 	{
-	   mWorldSerializer = new WorldSerializer(json);
+		scene = new RubeScene();
+		mWorldSerializer = new WorldSerializer(scene,json);
 		json.setSerializer(World.class, mWorldSerializer);
 		json.setIgnoreUnknownFields(true);
 	}
@@ -21,9 +23,6 @@ public class RubeWorldSerializer extends ReadOnlySerializer<RubeScene>
 	@Override
 	public RubeScene read(Json json, Object jsonData, Class type) 
 	{
-		RubeScene scene = new RubeScene();
-		RubeScene.setScene(scene);
-		
 		scene.stepsPerSecond 		= json.readValue("stepsPerSecond", 		int.class, RubeDefaults.World.stepsPerSecond, 		jsonData);
 		scene.positionIterations 	= json.readValue("positionIterations", 	int.class, RubeDefaults.World.positionIterations, 	jsonData);
 		scene.velocityIterations 	= json.readValue("velocityIterations", 	int.class, RubeDefaults.World.velocityIterations, 	jsonData);

@@ -28,10 +28,12 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 	Array<Body> 	bodies;
 	Array<Joint> 	joints;
 	
+	private RubeScene scene;
 	private final MouseJointDefSerializer mouseJointDefSerializer;
 	
-	public JointSerializer(Json _json)
+	public JointSerializer(RubeScene scene,Json _json)
 	{
+		this.scene = scene;
 		_json.setSerializer(RevoluteJointDef.class, 	new RevoluteJointDefSerializer());
 		_json.setSerializer(PrismaticJointDef.class, 	new PrismaticJointDefSerializer());
 		_json.setSerializer(PulleyJointDef.class, 		new PulleyJointDefSerializer());
@@ -133,7 +135,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 				((MouseJoint) joint).setTarget(mouseJointDefSerializer.target);
 			}
 		}
-		RubeScene.getScene().parseCustomProperties(json, joint, jsonData);
+		scene.parseCustomProperties(json, joint, jsonData);
 		return joint;
 	}
 	

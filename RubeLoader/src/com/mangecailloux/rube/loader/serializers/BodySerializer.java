@@ -18,10 +18,13 @@ public class BodySerializer extends ReadOnlySerializer<Body>
 	private 	  World world;
 	private final BodyDef def = new BodyDef();
 	private final FixtureSerializer fixtureSerializer;
+	private RubeScene scene;
 
-	public BodySerializer(Json json)
+	public BodySerializer(RubeScene scene, Json json)
 	{		
-		fixtureSerializer = new FixtureSerializer(json);
+		this.scene = scene;
+		
+		fixtureSerializer = new FixtureSerializer(scene,json);
 		
 		// as some Vector2 can be stored as a float we need a custom Vector2 Serializer :(
 		json.setSerializer(Vector2.class, new Vector2Serializer());
@@ -86,7 +89,7 @@ public class BodySerializer extends ReadOnlySerializer<Body>
 					body.setMassData(massData);
 			}
 		}
-		RubeScene.getScene().parseCustomProperties(json, body, jsonData);
+		scene.parseCustomProperties(json, body, jsonData);
 		
 		fixtureSerializer.setBody(body);
 		

@@ -13,13 +13,19 @@ import com.mangecailloux.rube.loader.serializers.utils.RubeVertexArray;
 public class ImageSerializer extends ReadOnlySerializer<RubeImage>
 {
    private final Vector2 mTmp = new Vector2();
+   private RubeScene scene;
+   
+   public ImageSerializer(RubeScene scene)
+   {
+	   this.scene = scene;
+   }
    
    @SuppressWarnings("rawtypes")
    @Override
    public RubeImage read(Json json, Object jsonData, Class type)
    {
       // Images reference bodies based on indexing in the .json file. -1 means no body reference
-      Array<Body> bodies = RubeScene.getScene().getBodies();
+      Array<Body> bodies = scene.getBodies();
       
       RubeImage defaults = RubeDefaults.Image.image;
       
@@ -58,7 +64,7 @@ public class ImageSerializer extends ReadOnlySerializer<RubeImage>
       image.renderOrder = json.readValue("renderOrder", int.class, defaults.renderOrder, jsonData);
       image.scale = json.readValue("scale", float.class, defaults.scale, jsonData);
       
-      RubeScene.getScene().parseCustomProperties(json, image, jsonData);
+      scene.parseCustomProperties(json, image, jsonData);
       
       return image;
    }

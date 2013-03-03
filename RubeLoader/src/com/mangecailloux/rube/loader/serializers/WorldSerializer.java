@@ -16,16 +16,19 @@ public class WorldSerializer extends ReadOnlySerializer<World>
 	private final BodySerializer 	bodySerializer;
 	private final JointSerializer 	jointSerializer;
 	private final ImageSerializer imageSerializer;
+	private RubeScene scene;
 	
-	public WorldSerializer(Json _json)
+	public WorldSerializer(RubeScene scene, Json _json)
 	{
-		bodySerializer = new BodySerializer(_json);
+		this.scene = scene;
+		
+		bodySerializer = new BodySerializer(scene,_json);
 		_json.setSerializer(Body.class, bodySerializer);
 		
-		jointSerializer = new JointSerializer(_json);
+		jointSerializer = new JointSerializer(scene,_json);
 		_json.setSerializer(Joint.class, jointSerializer);
 		
-		imageSerializer = new ImageSerializer();
+		imageSerializer = new ImageSerializer(scene);
 		_json.setSerializer(RubeImage.class, imageSerializer);
 	}
 	
@@ -44,12 +47,12 @@ public class WorldSerializer extends ReadOnlySerializer<World>
 		world.setAutoClearForces(autoClearForces);
 		world.setContinuousPhysics(continuousPhysics);
 		world.setWarmStarting(warmStarting);
-		RubeScene.getScene().parseCustomProperties(json, world, jsonData);
+		scene.parseCustomProperties(json, world, jsonData);
 		
 		// Bodies
 		bodySerializer.setWorld(world);
 		Array<Body> bodies = json.readValue("body", Array.class, Body.class, jsonData);
-		RubeScene.getScene().setBodies(bodies);
+		scene.setBodies(bodies);
 		
 		// Joints
 		// joints are done in two passes because gear joints reference other joints
@@ -59,17 +62,17 @@ public class WorldSerializer extends ReadOnlySerializer<World>
 		// Second joint pass
 		jointSerializer.init(world, bodies, joints);
 		joints = json.readValue("joint", Array.class, Joint.class, jsonData);
-		RubeScene.getScene().setJoints(joints);
+		scene.setJoints(joints);
 		
 		// Images
 		Array<RubeImage> images = json.readValue("image", Array.class, RubeImage.class, jsonData);
-		RubeScene.getScene().setImages(images);
+		scene.setImages(images);
 		if (images != null)
 		{
 		   for (int i = 0; i < images.size; i++)
 		   {
 		      RubeImage image = images.get(i);
-		      RubeScene.getScene().setMappedImage(image.body, image);
+		      scene.setMappedImage(image.body, image);
 		   }
 		}
 		

@@ -65,16 +65,6 @@ public class RubeScene
 		mBodyImageMap = new HashMap<Body,Array<RubeImage>>();
 	}
 	
-	public static RubeScene getScene()
-	{
-	   return mScene;
-	}
-	
-	public static void setScene(RubeScene scene)
-	{
-	   mScene = scene;
-	}
-	
 	public void parseCustomProperties(Json json,Object item, Object jsonData)
 	{
 	   Array<Map<String,?>> customProperties = json.readValue("customProperties", Array.class, HashMap.class, jsonData);
