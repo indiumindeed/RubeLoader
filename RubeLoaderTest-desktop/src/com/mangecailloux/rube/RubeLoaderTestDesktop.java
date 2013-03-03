@@ -8,7 +8,7 @@ public class RubeLoaderTestDesktop {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "RubeLoaderTest";
 		cfg.useGL20 = true;
-		cfg.width = 600;
+		cfg.width = 800;
 		cfg.height = 480;
 		
 		new LwjglApplication(new RubeLoaderTest(), cfg);

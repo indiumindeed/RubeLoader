@@ -1,0 +1,13 @@
+syntax: regexp
+.metadata/.*
+.*/bin/.*
+.*/.settings/.*
+.*/gen/.*
+.*/output/.*
+syntax: glob
+matchcard-android/local.properties
+PR/*
+target/*
+obj/*
+releases/*
+.DS_Store
