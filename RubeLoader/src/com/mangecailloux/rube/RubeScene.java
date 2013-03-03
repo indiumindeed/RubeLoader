@@ -67,36 +67,36 @@ public class RubeScene
 	
 	public void parseCustomProperties(Json json,Object item, Object jsonData)
 	{
-	   Array<Map<String,?>> customProperties = json.readValue("customProperties", Array.class, HashMap.class, jsonData);
-      if (customProperties != null)
-      {
-         for (int i = 0; i < customProperties.size; i++)
-         {
-            Map<String, ?> property = customProperties.get(i);
-            String propertyName = (String)property.get("name");
-            if (property.containsKey("string"))
-            {
-               setCustom(item, propertyName, (String)property.get("string"));
-            }
-            else if (property.containsKey("int"))
-            {
-               // Json stores things as Floats.  Convert to integer here.
-               setCustom(item, propertyName,(Integer)((Float)property.get("int")).intValue());
-            }
-            else if (property.containsKey("float"))
-            {
-               setCustom(item, propertyName, (Float) property.get("float"));
-            }
-            else if (property.containsKey("vec2"))
-            {
-               setCustom(item, propertyName, (Vector2)json.readValue("vec2", Vector2.class,property));
-            }
-            else if (property.containsKey("bool"))
-            {
-               setCustom(item, propertyName, (Boolean)property.get("bool"));
-            }
-         }
-      }
+		Array<Map<String,?>> customProperties = json.readValue("customProperties", Array.class, HashMap.class, jsonData);
+		if (customProperties != null)
+		{
+			for (int i = 0; i < customProperties.size; i++)
+			{
+				Map<String, ?> property = customProperties.get(i);
+				String propertyName = (String)property.get("name");
+				if (property.containsKey("string"))
+				{
+					setCustom(item, propertyName, (String)property.get("string"));
+				}
+				else if (property.containsKey("int"))
+				{
+					// Json stores things as Floats.  Convert to integer here.
+					setCustom(item, propertyName,(Integer)((Float)property.get("int")).intValue());
+				}
+				else if (property.containsKey("float"))
+				{
+					setCustom(item, propertyName, (Float) property.get("float"));
+				}
+				else if (property.containsKey("vec2"))
+				{
+					setCustom(item, propertyName, (Vector2)json.readValue("vec2", Vector2.class,property));
+				}
+				else if (property.containsKey("bool"))
+				{
+					setCustom(item, propertyName, (Boolean)property.get("bool"));
+				}
+			}
+		}
 	}
 	
    public CustomProperties getCustomPropertiesForItem(Object item, boolean createIfNotExisting)
