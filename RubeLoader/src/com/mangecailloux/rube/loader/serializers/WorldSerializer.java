@@ -9,11 +9,13 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.Json.ReadOnlySerializer;
 import com.mangecailloux.rube.RubeDefaults;
 import com.mangecailloux.rube.RubeScene;
+import com.mangecailloux.rube.loader.serializers.utils.RubeImage;
 
 public class WorldSerializer extends ReadOnlySerializer<World>
 {
 	private final BodySerializer 	bodySerializer;
 	private final JointSerializer 	jointSerializer;
+	private final ImageSerializer imageSerializer;
 	
 	public WorldSerializer(Json _json)
 	{
@@ -22,6 +24,9 @@ public class WorldSerializer extends ReadOnlySerializer<World>
 		
 		jointSerializer = new JointSerializer(_json);
 		_json.setSerializer(Joint.class, jointSerializer);
+		
+		imageSerializer = new ImageSerializer();
+		_json.setSerializer(RubeImage.class, imageSerializer);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -55,6 +60,18 @@ public class WorldSerializer extends ReadOnlySerializer<World>
 		jointSerializer.init(world, bodies, joints);
 		joints = json.readValue("joint", Array.class, Joint.class, jsonData);
 		RubeScene.getScene().setJoints(joints);
+		
+		// Images
+		Array<RubeImage> images = json.readValue("image", Array.class, RubeImage.class, jsonData);
+		RubeScene.getScene().setImages(images);
+		if (images != null)
+		{
+		   for (int i = 0; i < images.size; i++)
+		   {
+		      RubeImage image = images.get(i);
+		      RubeScene.getScene().setMappedImage(image.body, image);
+		   }
+		}
 		
 		return world;
 	}

@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
+import com.mangecailloux.rube.loader.serializers.utils.RubeImage;
 
 /**
  * A simple encapsulation of a {@link World}. Plus the data needed to run the simulation.
@@ -42,8 +43,11 @@ public class RubeScene
 	private Array<Body> mBodies;
 	private Array<Fixture> mFixtures;
 	private Array<Joint> mJoints;
+	private Array<RubeImage> mImages;
 	
 	public Map<Object,CustomProperties> mCustomPropertiesMap;
+	
+	public Map<Body,Array<RubeImage>> mBodyImageMap;
 	
 	/** Simulation steps wanted per second */
 	public int   stepsPerSecond;
@@ -58,6 +62,7 @@ public class RubeScene
 		positionIterations 	= RubeDefaults.World.positionIterations;
 		velocityIterations 	= RubeDefaults.World.velocityIterations;
 		mCustomPropertiesMap = new HashMap<Object, CustomProperties>();
+		mBodyImageMap = new HashMap<Body,Array<RubeImage>>();
 	}
 	
 	public static RubeScene getScene()
@@ -85,7 +90,8 @@ public class RubeScene
             }
             else if (property.containsKey("int"))
             {
-               setCustom(item, propertyName,(Integer)property.get("int"));
+               // Json stores things as Floats.  Convert to integer here.
+               setCustom(item, propertyName,(Integer)((Float)property.get("int")).intValue());
             }
             else if (property.containsKey("float"))
             {
@@ -194,6 +200,39 @@ public class RubeScene
       return defaultVal;
    }
 	
+   public void clear()
+   {
+      if (mBodies != null)
+      {
+         mBodies.clear();
+      }
+      
+      if (mFixtures != null)
+      {
+         mFixtures.clear();
+      }
+      
+      if (mJoints != null)
+      {
+         mJoints.clear();
+      }
+      
+      if (mImages != null)
+      {
+         mImages.clear();
+      }
+      
+      if (mCustomPropertiesMap != null)
+      {
+         mCustomPropertiesMap.clear();
+      }
+      
+      if (mBodyImageMap != null)
+      {
+         mBodyImageMap.clear();
+      }
+   }
+	
 	/**
 	 * Convenience method to update the Box2D simulation with the parameters read from the scene.
 	 */
@@ -234,5 +273,39 @@ public class RubeScene
    public Array<Joint> getJoints()
    {
       return mJoints;
+   }
+   
+   public void setImages(Array<RubeImage> images)
+   {
+      mImages = images;
+   }
+   
+   public Array<RubeImage> getImages()
+   {
+      return mImages;
+   }
+   
+   public void setMappedImage(Body body, RubeImage image)
+   {
+      Array<RubeImage> images = mBodyImageMap.get(body);
+      
+      // if the mapping hasn't been created yet...
+      if (images == null)
+      {
+         // initialize the key's value...
+         images = new Array<RubeImage>(false,1); // expectation is that most, if not all, bodies will have a single image.
+         images.add(image);
+         mBodyImageMap.put(body, images);
+      }
+      else
+      {
+         //TODO: Sort based on render order of the image
+         images.add(image);
+      }
+   }
+   
+   public Array<RubeImage> getMappedImage(Body body)
+   {
+      return mBodyImageMap.get(body);
    }
 }
