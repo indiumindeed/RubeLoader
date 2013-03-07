@@ -19,13 +19,13 @@ General
 =======
 The loader consists of several serializers to read in objects from the RUBE JSON output:
 
-	- Body
-	- Fixture
-	- Image
-	- Joint
-	- World
-	- RubeWorld
-	- Vector2
+	* Body
+	* Fixture
+	* Image
+	* Joint
+	* World
+	* RubeWorld
+	* Vector2
 
 Creating a physics world populated with Box2D objects only takes two lines:
 
@@ -34,13 +34,13 @@ Creating a physics world populated with Box2D objects only takes two lines:
 
 Several scene objects are created by the loadScene method.  These objects can be used for post-processing operations:
 
-	- scene.world: This object is the Box2D physics world and is populated with the bodies, joints, and fixtures from the JSON file.
-	- scene.getBodies(): This method returns an array of bodies created
-	- scene.getFixtures(): This method returns an array of fixtures created
-	- scene.getJoints(): This method returns an array of joints created
-	- scene.getImages(): This method returns an array of RubeImages defined in the JSON file.  Note: it is up to the app to perform all rendering
-	- scene.getMappedImage(): This method returns an array of all RubeImages associated with a particular Body.
-	- scene.getCustom(): This method allows you to retrieve custom property info from an object.
+	* scene.world: This object is the Box2D physics world and is populated with the bodies, joints, and fixtures from the JSON file.
+	* scene.getBodies(): This method returns an array of bodies created
+	* scene.getFixtures(): This method returns an array of fixtures created
+	* scene.getJoints(): This method returns an array of joints created
+	* scene.getImages(): This method returns an array of RubeImages defined in the JSON file.  Note: it is up to the app to perform all rendering
+	* scene.getMappedImage(): This method returns an array of all RubeImages associated with a particular Body.
+	* scene.getCustom(): This method allows you to retrieve custom property info from an object.
 	
 If the scene data is no longer needed, scene.clear() can be executed to free up any references.  Note that this does not alter or delete the world.  It is up
 to the underlying application to handle body deletions from the Box2D physics world.
@@ -57,20 +57,20 @@ The palm.json scene has examples of both kinds of images - ones referenced based
 
 General Setup
 -------------
-1) Clone the repo to a local directory.
-2) Open up Eclipse.  Set workspace to that local directory.
-3) File > Import > General > Existing projects into workspace > Next > Browse > Ok > Select All > Finish
+1. Clone the repo to a local directory.
+2. Open up Eclipse.  Set workspace to that local directory.
+3. File > Import > General > Existing projects into workspace > Next > Browse > Ok > Select All > Finish
 
 Android Setup
 -------------
-1) You may see an error if you don't have the same SDK installed.  No worries!  Right-click RubeLoaderTest-Android > Properties > Android.  Check installed SDK.  Click ok.
-2) Right-click RubleLoaderTest-Android > Run As.. > Android Application
-3) If you have an Android device connected to your machine, it should automatically install an launch.
+1. You may see an error if you don't have the same SDK installed.  No worries!  Right-click RubeLoaderTest-Android > Properties > Android.  Check installed SDK.  Click ok.
+2. Right-click RubleLoaderTest-Android > Run As.. > Android Application
+3. If you have an Android device connected to your machine, it should automatically install an launch.
 
 Desktop Setup
 -------------
-1) The project should be auto built.  Right-click on RubeLoaderTest-desktop > Run As... > Java Application
-2) Select "RubeLoaderTestDesktop". 
+1. The project should be auto built.  Right-click on RubeLoaderTest-desktop > Run As... > Java Application
+2. Select "RubeLoaderTestDesktop". 
 
 
 Limitations
