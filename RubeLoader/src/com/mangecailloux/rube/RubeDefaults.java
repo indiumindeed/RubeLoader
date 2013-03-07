@@ -41,6 +41,11 @@ public class RubeDefaults
 	public static class Fixture
 	{
 		public static final FixtureDef 			definition 		= new FixtureDef();
+
+		Fixture()
+		{
+			definition.friction = 0.0f;
+		}
 	}
 	public static class Joint
 	{

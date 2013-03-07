@@ -59,6 +59,7 @@ public class ImageSerializer extends ReadOnlySerializer<RubeImage>
       
       image.file = json.readValue("file", String.class, jsonData);
       image.filter = json.readValue("filter", int.class, defaults.filter, jsonData);
+      image.flip = json.readValue("flip", boolean.class, defaults.flip, jsonData);
       image.name = json.readValue("name", String.class, jsonData);
       image.opacity = json.readValue("opacity", float.class, defaults.opacity, jsonData);
       image.renderOrder = json.readValue("renderOrder", int.class, defaults.renderOrder, jsonData);

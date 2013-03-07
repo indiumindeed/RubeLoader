@@ -23,10 +23,11 @@ public class SimpleSpatial {
 	private float mRotation;
 	private static final Vector2 mTmp = new Vector2();
 
-	public SimpleSpatial(Texture texture, Body body, Color color, Vector2 size,
+	public SimpleSpatial(Texture texture, boolean flip, Body body, Color color, Vector2 size,
 			Vector2 center, float rotationInDegrees) {
 		mBody = body;
 		mSprite = new Sprite(texture);
+		mSprite.flip(flip, false);
 		mRotation = rotationInDegrees;
 		mSprite.setSize(size.x, size.y);
 		mSprite.setOrigin(size.x / 2, size.y / 2);
@@ -49,10 +50,11 @@ public class SimpleSpatial {
 		mSprite.setPosition(mTmp.x, mTmp.y);
 	}
 
-	public SimpleSpatial(TextureRegion region, Body body, Color color,
+	public SimpleSpatial(TextureRegion region, boolean flip, Body body, Color color,
 			Vector2 size, Vector2 center, float rotationInDegrees) {
 		mBody = body;
 		mSprite = new Sprite(region);
+		mSprite.flip(flip, false);
 		mRotation = rotationInDegrees;
 		mSprite.setSize(size.x, size.y);
 		mSprite.setOrigin(size.x / 2, size.y / 2);
