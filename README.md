@@ -47,13 +47,31 @@ to the underlying application to handle body deletions from the Box2D physics wo
 
 RubeLoaderTest
 ==============
-This loads in a test file that includes custom property and image info.  Use the mouse to pan and zoom.
+This loads in a test file that includes custom property and image info.  Use the mouse to pan and zoom.  On Android touch the screen to pan.
 
 The included rendering is for demo purposes only.  A SimpleSpatial class is used to render image data which may or may not be attached to a Box2D body.
 It is by no means efficient (textures are created for each image) and requires GL20 support for non-POT.  But, at the very least, should convey
 example usage.
 
 The palm.json scene has examples of both kinds of images - ones referenced based on a particular body and others referenced to the world origin. 
+
+General Setup
+-------------
+1) Clone the repo to a local directory.
+2) Open up Eclipse.  Set workspace to that local directory.
+3) File > Import > General > Existing projects into workspace > Next > Browse > Ok > Select All > Finish
+
+Android Setup
+-------------
+1) You may see an error if you don't have the same SDK installed.  No worries!  Right-click RubeLoaderTest-Android > Properties > Android.  Check installed SDK.  Click ok.
+2) Right-click RubleLoaderTest-Android > Run As.. > Android Application
+3) If you have an Android device connected to your machine, it should automatically install an launch.
+
+Desktop Setup
+-------------
+1) The project should be auto built.  Right-click on RubeLoaderTest-desktop > Run As... > Java Application
+2) Select "RubeLoaderTestDesktop". 
+
 
 Limitations
 ===========
