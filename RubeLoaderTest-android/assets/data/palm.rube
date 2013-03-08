@@ -2588,6 +2588,63 @@
       },
       
       {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
+            "density" : 1,
+            "friction" : 0.2000000029802322,
+            "id" : 43,
+            "name" : "fixture1",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                -9.872991561889648,
+                6.273436069488525,
+                11.50560951232910,
+                -6.273443698883057
+              ],
+              "y" : 
+              [
+                3.485789060592651,
+                -5.509841442108154,
+                -3.657633543014526,
+                5.509841442108154
+              ]
+            }
+          }
+        ],
+        "id" : 39,
+        "linearVelocity" : 0,
+        "name" : "body6",
+        "position" : 
+        {
+          "x" : 48.70178222656250,
+          "y" : 83.74331665039063
+        },
+        "type" : "static"
+      },
+      
+      {
         "angle" : -3.373840093612671,
         "angularVelocity" : 0,
         "awake" : true,

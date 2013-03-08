@@ -79,5 +79,9 @@ Currently does not support retrieving objects by name.
 
 TODO List
 =========
-1. Added name handling
-2. Added pinch-zooming for Android
+1. Adding handling via object name
+2. Adding pinch-zooming for Android
+
+Screenshot of test example
+==========================
+![Screenshot](http://www.badlogicgames.com/forum/download/file.php?id=1225)
