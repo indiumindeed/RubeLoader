@@ -65,7 +65,7 @@ Android Setup
 -------------
 1. You may see an error if you don't have the same SDK installed.  No worries!  Right-click RubeLoaderTest-Android > Properties > Android.  Check installed SDK.  Click ok.
 2. Right-click RubleLoaderTest-Android > Run As.. > Android Application
-3. If you have an Android device connected to your machine, it should automatically install an launch.
+3. If you have an Android device connected to your machine, it should automatically install and launch.
 
 Desktop Setup
 -------------
@@ -76,3 +76,8 @@ Desktop Setup
 Limitations
 ===========
 Currently does not support retrieving objects by name.
+
+TODO List
+=========
+1. Added name handling
+2. Added pinch-zooming for Android

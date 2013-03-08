@@ -65,6 +65,7 @@ public class RubeScene
 		mBodyImageMap = new HashMap<Body,Array<RubeImage>>();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void parseCustomProperties(Json json,Object item, Object jsonData)
 	{
 		Array<Map<String,?>> customProperties = json.readValue("customProperties", Array.class, HashMap.class, jsonData);
