@@ -95,6 +95,8 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor {
 			}
 		}
 		
+		scene.printStats();
+		
 		scene.clear(); // no longer need any scene references
 	}
 

@@ -79,8 +79,8 @@ Currently does not support retrieving objects by name.
 
 TODO List
 =========
-1. Adding handling via object name
-2. Adding pinch-zooming for Android
+1. Add handling via object name
+2. Add pinch-zooming for Android target
 
 Screenshot of test example
 ==========================

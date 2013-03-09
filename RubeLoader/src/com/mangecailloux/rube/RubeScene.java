@@ -246,9 +246,16 @@ public class RubeScene
       return mBodies;
    }
 
-   public void setFixtures(Array<Fixture> mFixtures)
+   public void addFixtures(Array<Fixture> fixtures)
    {
-      this.mFixtures = mFixtures;
+	   if (fixtures != null)
+	   {
+		   if (mFixtures == null)
+		   {
+			   mFixtures = new Array<Fixture>();
+		   }
+		   mFixtures.addAll(fixtures);
+	   }
    }
 
    public Array<Fixture> getFixtures()
@@ -298,5 +305,13 @@ public class RubeScene
    public Array<RubeImage> getMappedImage(Body body)
    {
       return mBodyImageMap.get(body);
+   }
+
+   public void printStats() {
+	   System.out.println("Body count: " + ((mBodies != null) ? mBodies.size : 0));
+	   System.out.println("Fixture count: " + ((mFixtures != null) ? mFixtures.size : 0));
+	   System.out.println("Joint count: " + ((mJoints != null) ? mJoints.size : 0));
+	   System.out.println("Image count: " + ((mImages != null) ? mImages.size : 0));
+	   
    }
 }

@@ -37,7 +37,7 @@ public class BodySerializer extends ReadOnlySerializer<Body>
 		world = _world;
 	}
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Body read(Json json, Object jsonData, Class type) 
 	{
@@ -93,7 +93,7 @@ public class BodySerializer extends ReadOnlySerializer<Body>
 		
 		fixtureSerializer.setBody(body);
 		
-		json.readValue("fixture", Array.class, Fixture.class, jsonData);
+		scene.addFixtures(json.readValue("fixture", Array.class, Fixture.class, jsonData));
 		
 		return body;
 	}
