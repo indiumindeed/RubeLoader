@@ -229,6 +229,7 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor {
 									{
 
 										shape.getVertex(k, mTmp);
+										mTmp.rotate(body.getAngle()*MathUtils.radiansToDegrees);
 										mTmp.add(bodyPos); // convert local coordinates to world coordinates to that textures are aligned
 										vertices[k*2] = mTmp.x*PolySpatial.PIXELS_PER_METER;
 										vertices[k*2+1] = mTmp.y*PolySpatial.PIXELS_PER_METER;

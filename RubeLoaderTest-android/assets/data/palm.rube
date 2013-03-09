@@ -590,6 +590,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "friction" : 0.2000000029802322,
             "id" : 24,
@@ -1190,6 +1198,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "friction" : 0.2000000029802322,
             "id" : 18,
@@ -1361,6 +1377,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "friction" : 0.2000000029802322,
             "id" : 19,
@@ -1686,6 +1710,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "friction" : 0.2000000029802322,
             "id" : 25,
@@ -2388,6 +2420,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "friction" : 0.2000000029802322,
             "id" : 23,
@@ -2944,6 +2984,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "friction" : 0.2000000029802322,
             "id" : 21,
@@ -3115,6 +3163,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "friction" : 0.2000000029802322,
             "id" : 22,
