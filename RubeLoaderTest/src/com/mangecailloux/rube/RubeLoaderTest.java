@@ -161,7 +161,7 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor {
 					texture = new Texture(textureFileName);
 					textureMap.put(textureFileName, texture);
 				}
-				SimpleSpatial spatial = new SimpleSpatial(texture, image.flip, image.body, Color.WHITE, mTmp, image.center, image.angleInRads * MathUtils.radiansToDegrees);
+				SimpleSpatial spatial = new SimpleSpatial(texture, image.flip, image.body, image.color, mTmp, image.center, image.angleInRads * MathUtils.radiansToDegrees);
 				spatials.add(spatial);
 			}
 		}

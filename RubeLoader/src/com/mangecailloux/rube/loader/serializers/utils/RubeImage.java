@@ -1,5 +1,6 @@
 package com.mangecailloux.rube.loader.serializers.utils;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -7,6 +8,7 @@ public class RubeImage {
 	public float angleInRads = 0.0f;
 	public Body body = null;
 	public final Vector2 center = new Vector2();
+	public final Color color = new Color();
 	public String file = null;
 	public int filter;
 	public String name = null;

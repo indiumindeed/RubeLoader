@@ -24,7 +24,7 @@ public class RubeVertexArray
 	 */
 	public Vector2[] toVector2()
 	{
-		// lenght of x and y should be the same and not null
+		// length of x and y should be the same and not null
 		if((x == null || y == null) || x.length != y.length || x.length == 0)
 			return null;
 		

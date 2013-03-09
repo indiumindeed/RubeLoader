@@ -62,6 +62,9 @@ public class ImageSerializer extends ReadOnlySerializer<RubeImage>
       image.flip = json.readValue("flip", boolean.class, defaults.flip, jsonData);
       image.name = json.readValue("name", String.class, jsonData);
       image.opacity = json.readValue("opacity", float.class, defaults.opacity, jsonData);
+      int [] colorArray = json.readValue("colorTint", int[].class,RubeDefaults.Image.colorArray,jsonData);
+      image.color.set((float)colorArray[0]/255, (float)colorArray[1]/255, (float)colorArray[2]/255, (float)colorArray[3]/255);
+      
       image.renderOrder = json.readValue("renderOrder", int.class, defaults.renderOrder, jsonData);
       image.scale = json.readValue("scale", float.class, defaults.scale, jsonData);
       

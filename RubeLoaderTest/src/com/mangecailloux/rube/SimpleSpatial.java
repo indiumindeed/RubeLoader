@@ -25,36 +25,22 @@ public class SimpleSpatial {
 
 	public SimpleSpatial(Texture texture, boolean flip, Body body, Color color, Vector2 size,
 			Vector2 center, float rotationInDegrees) {
-		mBody = body;
 		mSprite = new Sprite(texture);
-		mSprite.flip(flip, false);
-		mRotation = rotationInDegrees;
-		mSprite.setSize(size.x, size.y);
-		mSprite.setOrigin(size.x / 2, size.y / 2);
-		mHalfSize.set(size.x / 2, size.y / 2);
-		mCenter.set(center);
-
-		if (body != null) {
-			mTmp.set(body.getPosition());
-			mSprite.setPosition(mTmp.x - size.x / 2, mTmp.y - size.y / 2);
-
-			float angle = mBody.getAngle() * MathUtils.radiansToDegrees;
-			mTmp.set(mCenter).rotate(angle).add(mBody.getPosition())
-					.sub(mHalfSize);
-			mSprite.setRotation(mRotation + angle);
-		} else {
-			mTmp.set(center.x - size.x / 2, center.y - size.y / 2);
-			mSprite.setRotation(rotationInDegrees);
-		}
-
-		mSprite.setPosition(mTmp.x, mTmp.y);
+		defineSpatial(flip,body,color,size,center,rotationInDegrees);
 	}
 
 	public SimpleSpatial(TextureRegion region, boolean flip, Body body, Color color,
 			Vector2 size, Vector2 center, float rotationInDegrees) {
-		mBody = body;
 		mSprite = new Sprite(region);
+		defineSpatial(flip,body,color,size,center,rotationInDegrees);
+	}
+	
+	public void defineSpatial(boolean flip, Body body, Color color, Vector2 size,
+			Vector2 center, float rotationInDegrees)
+	{
+		mBody = body;
 		mSprite.flip(flip, false);
+		mSprite.setColor(color);
 		mRotation = rotationInDegrees;
 		mSprite.setSize(size.x, size.y);
 		mSprite.setOrigin(size.x / 2, size.y / 2);
