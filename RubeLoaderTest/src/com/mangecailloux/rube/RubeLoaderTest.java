@@ -20,6 +20,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -221,16 +222,34 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor {
 								int vertexCount = shape.getVertexCount();
 								float [] vertices = new float[vertexCount*2];
 								
-								for (int k = 0; k < vertexCount; k++)
+								// static bodies are texture aligned and do not get drawn based off of the related body.
+								if (body.getType() == BodyType.StaticBody)
 								{
-									shape.getVertex(k, mTmp);
-									mTmp.add(bodyPos); // convert local fixture coords to world coordinates so all fixture textures regardless of body are aligned. 
-									vertices[k*2] = mTmp.x*PolySpatial.PIXELS_PER_METER;
-									vertices[k*2+1] = mTmp.y*PolySpatial.PIXELS_PER_METER;
+									for (int k = 0; k < vertexCount; k++)
+									{
+
+										shape.getVertex(k, mTmp);
+										mTmp.add(bodyPos); // convert local coordinates to world coordinates to that textures are aligned
+										vertices[k*2] = mTmp.x*PolySpatial.PIXELS_PER_METER;
+										vertices[k*2+1] = mTmp.y*PolySpatial.PIXELS_PER_METER;
+									}
+									PolygonRegion region = new PolygonRegion(textureRegion, vertices);
+									PolySpatial spatial = new PolySpatial(region, Color.WHITE);
+									polySpatials.add(spatial);
 								}
-								PolygonRegion region = new PolygonRegion(textureRegion, vertices);
-								PolySpatial spatial = new PolySpatial(region, Color.WHITE);
-								polySpatials.add(spatial);
+								else
+								{
+									// all other fixtures are aligned based on their associated body. 
+									for (int k = 0; k < vertexCount; k++)
+									{
+										shape.getVertex(k, mTmp);
+										vertices[k*2] = mTmp.x*PolySpatial.PIXELS_PER_METER;
+										vertices[k*2+1] = mTmp.y*PolySpatial.PIXELS_PER_METER;
+									}
+									PolygonRegion region = new PolygonRegion(textureRegion, vertices);
+									PolySpatial spatial = new PolySpatial(region, body, Color.WHITE);
+									polySpatials.add(spatial);
+								}
 							}
 						}
 					}
