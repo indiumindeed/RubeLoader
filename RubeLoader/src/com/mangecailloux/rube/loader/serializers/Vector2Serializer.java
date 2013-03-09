@@ -15,6 +15,7 @@ public class Vector2Serializer extends ReadOnlySerializer<Vector2>
 		
 		try 
 		{
+			// consume "null" vectors here.
 			json.readValue(float.class, jsonData);
 		} 
 		catch (SerializationException e) 
