@@ -222,6 +222,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "filter-categoryBits" : 4,
             "friction" : 0.50,
@@ -242,6 +250,14 @@
           },
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "filter-categoryBits" : 4,
             "friction" : 0.50,
@@ -322,6 +338,14 @@
           },
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "filter-categoryBits" : 4,
             "friction" : 0.50,
@@ -835,6 +859,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "friction" : 0.2000000029802322,
             "id" : 27,
@@ -975,6 +1007,14 @@
         [
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "filter-maskBits" : 65503,
             "friction" : 0.2000000029802322,
@@ -2900,6 +2940,14 @@
           },
           
           {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
             "density" : 1,
             "filter-categoryBits" : 4,
             "friction" : 0.50,
