@@ -88,4 +88,4 @@ TODO List
 
 Screenshot of test example
 ==========================
-![Screenshot](http://github.com/tescott/RubeLoader/blob/master/screenshot.png)
+![Screenshot](https://raw.github.com/tescott/RubeLoader/master/screenshot.png)
