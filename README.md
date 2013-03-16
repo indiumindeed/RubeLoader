@@ -69,9 +69,13 @@ Android Setup
 
 Desktop Setup
 -------------
-1. The project should be auto built.  Right-click on RubeLoaderTest-desktop > Run As... > Java Application
+1. Right-click on RubeLoaderTest-desktop > Run As... > Java Application
 2. Select "RubeLoaderTestDesktop". 
 
+Required Software:
+==================
+- Eclipse
+- Android SDK
 
 Limitations
 ===========
@@ -84,4 +88,4 @@ TODO List
 
 Screenshot of test example
 ==========================
-![Screenshot](http://www.badlogicgames.com/forum/download/file.php?id=1225)
+![Screenshot](http://github.com/tescott/RubeLoader/blob/master/screenshot.png)
