@@ -90,7 +90,7 @@ public class RubeScene
 				}
 				else if (property.containsKey("vec2"))
 				{
-					setCustom(item, propertyName, (Vector2)json.readValue("vec2", Vector2.class,property));
+					setCustom(item, propertyName, json.readValue(Vector2.class, property.get("vec2")));
 				}
 				else if (property.containsKey("bool"))
 				{

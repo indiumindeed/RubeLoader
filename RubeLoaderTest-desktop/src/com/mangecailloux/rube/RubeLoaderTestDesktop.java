@@ -3,7 +3,6 @@ package com.mangecailloux.rube;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
