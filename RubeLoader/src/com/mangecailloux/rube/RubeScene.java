@@ -102,12 +102,15 @@ public class RubeScene
 	
    public CustomProperties getCustomPropertiesForItem(Object item, boolean createIfNotExisting)
    {
-
       if (mCustomPropertiesMap.containsKey(item))
+      {
          return mCustomPropertiesMap.get(item);
+      }
 
       if (!createIfNotExisting)
+      {
          return null;
+      }
 
       CustomProperties props = new CustomProperties();
       mCustomPropertiesMap.put(item, props);
