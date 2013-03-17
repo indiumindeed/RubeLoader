@@ -60,6 +60,7 @@ General Setup
 1. Clone the repo to a local directory.
 2. Open up Eclipse.  Set workspace to that local directory.
 3. File > Import > General > Existing projects into workspace > Next > Browse > Ok > Select All > Finish
+4. If you do not have the Box2dControllers repo cloned, you may wish to close the projects RubeLoaderTestWithBox2dControllers and RubeLoaderTestWithBox2dControllers-desktop to avoid errors.
 
 Android Setup
 -------------
@@ -72,10 +73,19 @@ Desktop Setup
 1. Right-click on RubeLoaderTest-desktop > Run As... > Java Application
 2. Select "RubeLoaderTestDesktop". 
 
+Box2dController Setup
+---------------------
+1. Clone https://github.com/tescott/box2dcontrollers
+2. Import the Box2DControllers into your workspace.
+3. Resolve any dependency issues.
+4. Right-click on RubeLoaderTestWithBox2dCotnrollers-desktop > Run As > Java Application > RubeLoaderTestDesktop
+
 Required Software:
 ==================
 - Eclipse
 - Android SDK
+- RUBE: https://www.iforce2d.net/rube/ (optional)
+- Box2dControllers: https://github.com/tescott/box2dcontrollers (optional)
 
 Limitations
 ===========
