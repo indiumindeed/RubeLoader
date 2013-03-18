@@ -129,8 +129,11 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
          for (int i = 0; i < bodies.size; i++)
          {
             Body body = bodies.get(i);
-            String gameInfo = scene.getCustom(body, "GameInfo", "");
-            System.out.println("GameInfo custom property: " + gameInfo);
+            String gameInfo = scene.getCustom(body, "GameInfo", (String)null);
+            if (gameInfo != null)
+            {
+            	System.out.println("GameInfo custom property: " + gameInfo);
+            }
          }
       }
 

@@ -65,7 +65,10 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor {
 		mCamPos = new Vector3();
 		mCurrentPos = new Vector3();
 		
-		camera = new OrthographicCamera(50, 50*h/w);
+		camera = new OrthographicCamera(100, 100*h/w);
+		camera.position.set(50,50,0);
+		camera.zoom = 1.8f;
+		camera.update();
 		
 		loader = new RubeSceneLoader();
 		
@@ -91,8 +94,11 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor {
 			for (int i=0; i < bodies.size; i++)
 			{
 				Body body = bodies.get(i);
-				String gameInfo = scene.getCustom(body, "GameInfo", "");
-				System.out.println("GameInfo custom property: " + gameInfo);
+				String gameInfo = scene.getCustom(body, "GameInfo", (String)null);
+				if (gameInfo != null)
+				{
+					System.out.println("GameInfo custom property: " + gameInfo);
+				}
 			}
 		}
 		
