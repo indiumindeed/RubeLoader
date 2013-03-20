@@ -4,9 +4,10 @@ This is a RUBE scene JSON loader for libGdx.  It reads JSON data output by RUBE 
 a Box2D world with the bodies, joints, and fixtures defined therein.  It includes support for custom properties
 and images.   
 
-Originally forked from https://github.com/cvayer/RubeLoader.
+This repo contains a fully self-contained Libgdx test for reference.  It also contains a reference
+for Box2DControllers (https://github.com/tescott/box2dcontrollers).
 
-This repo contains a fully self-contained Libgdx test for reference.
+See also https://github.com/cvayer/gdx-rube for a similar solution.
 
 About RUBE
 ==========
