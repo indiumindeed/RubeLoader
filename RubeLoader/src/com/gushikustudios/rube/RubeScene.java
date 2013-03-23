@@ -266,6 +266,11 @@ public class RubeScene
    {
       return world;
    }
+   
+   public void setWorld(World world)
+   {
+      this.world = world;
+   }
 
    public Array<Fixture> getFixtures()
    {

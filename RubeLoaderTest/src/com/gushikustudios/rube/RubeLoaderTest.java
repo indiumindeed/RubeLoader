@@ -88,7 +88,7 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
 
       loader = new RubeSceneLoader();
 
-      scene = loader.loadScene(Gdx.files.internal("data/simpleramp.json"));
+      scene = loader.loadScene(Gdx.files.internal("data/palm.json"));
 
       debugRender = new Box2DDebugRenderer();
 

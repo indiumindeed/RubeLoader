@@ -26,7 +26,7 @@ public class RubeWorldSerializer extends ReadOnlySerializer<RubeScene>
 		scene.stepsPerSecond 		= json.readValue("stepsPerSecond", 		int.class, RubeDefaults.World.stepsPerSecond, 		jsonData);
 		scene.positionIterations 	= json.readValue("positionIterations", 	int.class, RubeDefaults.World.positionIterations, 	jsonData);
 		scene.velocityIterations 	= json.readValue("velocityIterations", 	int.class, RubeDefaults.World.velocityIterations, 	jsonData);
-		scene.world					= json.readValue(World.class,	jsonData);
+		scene.setWorld(json.readValue(World.class,	jsonData));
 		return scene;
 	}
 
