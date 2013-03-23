@@ -91,10 +91,9 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
       mCurrentPos = new Vector3();
 
       camera = new OrthographicCamera(100, 100 * h / w);
-      camera.position.set(50,50,0);
+      camera.position.set(50, 50, 0);
       camera.zoom = 1.8f;
       camera.update();
-      
 
       loader = new RubeSceneLoader();
 
@@ -111,7 +110,7 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
       createSpatialsFromRubeImages(scene);
       createPolySpatialsFromRubeFixtures(scene);
 
-      mWorld = scene.world;
+      mWorld = scene.getWorld();
       // configure simulation settings
       mVelocityIter = scene.velocityIterations;
       mPositionIter = scene.positionIterations;
@@ -130,10 +129,10 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
          for (int i = 0; i < bodies.size; i++)
          {
             Body body = bodies.get(i);
-            String gameInfo = scene.getCustom(body, "GameInfo", (String)null);
+            String gameInfo = scene.getCustom(body, "GameInfo", (String) null);
             if (gameInfo != null)
             {
-            	System.out.println("GameInfo custom property: " + gameInfo);
+               System.out.println("GameInfo custom property: " + gameInfo);
             }
          }
       }
@@ -158,8 +157,9 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
                      // need to calculate the fluid surface height for the buoyancy controller
                      PolygonShape shape = (PolygonShape) fixture.getShape();
                      shape.getVertex(0, mTmp);
-                     float maxHeight = mTmp.y + bodyHeight; // initialize the height, transforming to 'world' coordinates
-                     
+                     float maxHeight = mTmp.y + bodyHeight; // initialize the height, transforming to 'world'
+                                                            // coordinates
+
                      // find the maxHeight
                      for (int j = 1; j < shape.getVertexCount(); j++)
                      {
@@ -168,24 +168,26 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
                      }
                      B2BuoyancyController b2c = new B2BuoyancyController(
                               B2BuoyancyController.DEFAULT_SURFACE_NORMAL, // assume up
-                              scene.getCustom(fixture, "ControllerVelocity",B2BuoyancyController.DEFAULT_FLUID_VELOCITY),
+                           scene.getCustom(fixture, "ControllerVelocity", B2BuoyancyController.DEFAULT_FLUID_VELOCITY),
                               mWorld.getGravity(),
                               maxHeight,
                               fixture.getDensity(),
                               scene.getCustom(fixture, "LinearDrag", B2BuoyancyController.DEFAULT_LINEAR_DRAG),
                               scene.getCustom(fixture, "AngularDrag", B2BuoyancyController.DEFAULT_ANGULAR_DRAG));
-                     fixture.setUserData(b2c); // reference back to the controller from the fixture (see beginContact/endContact)
+                     fixture.setUserData(b2c); // reference back to the controller from the fixture (see
+                                               // beginContact/endContact)
                      mB2Controllers.add(b2c); // add it to the list so it can be stepped later
                   }
                   break;
 
                case B2Controller.GRAVITY_CONTROLLER:
-                  {
-                     B2GravityController b2c = new B2GravityController();
-                     b2c = new B2GravityController(scene.getCustom(fixture, "ControllerVelocity", B2GravityController.DEFAULT_GRAVITY));
-                     fixture.setUserData(b2c);
-                     mB2Controllers.add(b2c);
-                  }
+               {
+                  B2GravityController b2c = new B2GravityController();
+                  b2c = new B2GravityController(scene.getCustom(fixture, "ControllerVelocity",
+                        B2GravityController.DEFAULT_GRAVITY));
+                  fixture.setUserData(b2c);
+                  mB2Controllers.add(b2c);
+               }
                   break;
             }
          }
@@ -246,7 +248,7 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
          polygonBatch.end();
       }
 
-      debugRender.render(scene.world, camera.combined);
+      debugRender.render(mWorld, camera.combined);
    }
 
    /**
@@ -448,7 +450,6 @@ public class RubeLoaderTest implements ApplicationListener, InputProcessor, Cont
       {
          camera.zoom = 0.1f;
       }
-      System.out.println("zoom: " + camera.zoom);
       camera.update();
       return true;
    }

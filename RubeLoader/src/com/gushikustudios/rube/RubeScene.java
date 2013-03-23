@@ -37,17 +37,16 @@ public class RubeScene
    }
    
 	/** Box2D {@link World} */
-	public World world;
+	private World world;
 	
-	public static RubeScene mScene; // singleton reference.  Initialized by RubeWorldSerializer.
 	private Array<Body> mBodies;
 	private Array<Fixture> mFixtures;
 	private Array<Joint> mJoints;
 	private Array<RubeImage> mImages;
 	
-	public Map<Object,CustomProperties> mCustomPropertiesMap;
+	private Map<Object,CustomProperties> mCustomPropertiesMap;
 	
-	public Map<Body,Array<RubeImage>> mBodyImageMap;
+	private Map<Body,Array<RubeImage>> mBodyImageMap;
 	
 	/** Simulation steps wanted per second */
 	public int   stepsPerSecond;
@@ -225,6 +224,8 @@ public class RubeScene
       {
          mBodyImageMap.clear();
       }
+      
+      world = null;
    }
 	
 	/**
@@ -259,6 +260,11 @@ public class RubeScene
 		   }
 		   mFixtures.addAll(fixtures);
 	   }
+   }
+   
+   public World getWorld()
+   {
+      return world;
    }
 
    public Array<Fixture> getFixtures()
