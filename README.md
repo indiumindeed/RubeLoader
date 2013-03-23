@@ -100,4 +100,4 @@ TODO List
 Screenshot / video of test example
 ==================================
 ![Screenshot](https://raw.github.com/tescott/RubeLoader/master/screenshot.png)
-![Youtube](http://youtu.be/hgo7Pxtcoyk)
+[![Youtube](https://raw.github.com/tescott/RubeLoader/master/screenshot.png)](http://youtu.be/hgo7Pxtcoyk)
