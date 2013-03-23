@@ -38,15 +38,21 @@ public class RubeDefaults
 	{
 		public static final BodyDef 			definition 		= new BodyDef();
 	}
+	
+   public static class RubeFixtureDef extends FixtureDef
+   {
+      public RubeFixtureDef()
+      {
+         super();
+         friction = 0; // Mario defined this as 0.2 in FixtureDef.  If it's 0 in RUBE, then it doesn't appear in the .JSON
+      }
+   }
+   
 	public static class Fixture
 	{
-		public static final FixtureDef 			definition 		= new FixtureDef();
-
-		Fixture()
-		{
-			definition.friction = 0.0f;
-		}
+		public static final FixtureDef 			definition 		= new RubeFixtureDef();
 	}
+	
 	public static class Joint
 	{
 		public static final boolean				collideConnected= false;
