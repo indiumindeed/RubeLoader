@@ -35,7 +35,7 @@ Creating a physics world populated with Box2D objects only takes two lines:
 
 Several scene objects are created by the loadScene method.  These objects can be used for post-processing operations:
 
-	* scene.world: This object is the Box2D physics world and is populated with the bodies, joints, and fixtures from the JSON file.
+	* scene.getWorld(): This method returns the Box2D physics world.  After loading, it is populated with the bodies, joints, and fixtures from the JSON file.
 	* scene.getBodies(): This method returns an array of bodies created
 	* scene.getFixtures(): This method returns an array of fixtures created
 	* scene.getJoints(): This method returns an array of joints created
